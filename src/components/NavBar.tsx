@@ -17,8 +17,11 @@ import {
 import { MoonIcon, SunIcon } from '@chakra-ui/icons'
 import { NavLink } from "react-router-dom";
 import cookieService from '../services/cookieService';
-import {  useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../app/store';
+import CartDrawer from './CartDrawer';
+import { useRef } from 'react';
+import { onOpenCartDrawerAction } from '../app/features/globalSlice';
 
 const Links: { title: string; tab: string }[] = [
   { title: 'Home', tab: "/" }, { title: 'About', tab: 'about' },
@@ -31,7 +34,7 @@ const Login_And_Register: { title: string; tab: string }[] = [
 
 export default function NavBar() {
 
-  const {cartProducts}=useSelector((state:RootState)=>state.cart)
+  const { cartProducts } = useSelector((state: RootState) => state.cart)
 
   const token = cookieService.get('jwt')
   const { colorMode, toggleColorMode } = useColorMode()
@@ -41,9 +44,14 @@ export default function NavBar() {
     window.location.reload()
   }
 
+  const btnRef = useRef<HTMLButtonElement | null>(null)
+  const dispatch = useDispatch()
+  const handelOpenDrawer = () => dispatch(onOpenCartDrawerAction())
+
   return (
     <>
-      <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4} position="fixed"top={0} left={0} right={0} zIndex={1}>
+      <CartDrawer />
+      <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4} position="fixed" top={0} left={0} right={0} zIndex={1}>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
           <HStack spacing={8} alignItems={'center'}>
             <NavLink to={'/'}>
@@ -64,7 +72,7 @@ export default function NavBar() {
                 {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
               </Button>
 
-              <Button>
+              <Button ref={btnRef}  onClick={handelOpenDrawer}>
                 Cart ({cartProducts.length})
               </Button>
 

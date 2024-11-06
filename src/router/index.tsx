@@ -8,6 +8,9 @@ import Register from "../pages/Register";
 import Login from "../pages/Login";
 import ProtectedRoute from "../components/auth/ProtectedRoute";
 import ProtectedAuth from "../components/auth/ProtectedAuth";
+import SidebarWithHeader from "../pages/dashboard/DashboardLayout";
+import AdminDashboard from "../pages/dashboard/AdminDashboard";
+import DashboardProductsPage from "../pages/dashboard/DashboardProductsPage";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -20,6 +23,13 @@ const router = createBrowserRouter(
             </Route>
             <Route path="/login" element={<ProtectedAuth element={<Login />} />} />
             <Route path="/register" element={<Register />} />
+
+
+            <Route path="/dashboard" element={<SidebarWithHeader/>}>
+                <Route path="/dashboard/" element={<AdminDashboard/>} />
+                <Route path="/dashboard/products" element={<DashboardProductsPage/>} />
+                <Route path="/dashboard/category" element={<h1>category</h1>} />
+            </Route>
         </>
     )
 );

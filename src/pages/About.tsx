@@ -2,6 +2,6 @@
 
 export default function About() {
   return (
-    <div>About</div>
+    <div style={{position: "relative",top: '60px'} }>About</div>
   )
 }

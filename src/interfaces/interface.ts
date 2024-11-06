@@ -7,4 +7,5 @@ export interface IProduct {
     stock: number;
     category: {  title: string;};
     thumbnail: { url: string }
+    // quantity?:number
 }

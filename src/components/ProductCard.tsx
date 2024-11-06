@@ -25,8 +25,8 @@ export default function ProductCard({ product }: IProps) {
                     objectFit={'cover'}
                 />
                 <Stack mt='6' spacing='3' >
-                    <Heading size='md' color={colorMode=='light'?'purple.600': "white"} textAlign={'center'} p={3} mb={2}>{product.title}</Heading>
-                    <Text color={colorMode=='light'?'purple.600': "white"} fontSize={'sm'} textAlign={'center'}> {product.description} </Text>
+                    <Heading size='md' color={colorMode=='light'?'black': "white"} textAlign={'center'} p={3} mb={2}>{product.title}</Heading>
+                    <Text color={colorMode=='light'?'black': "white"} fontSize={'sm'} textAlign={'center'}> {product.description} </Text>
                     <Text color='purple.600' fontSize='3xl' textAlign={'center'}> ${product.price}</Text>
                     <Button
                         as={Link}

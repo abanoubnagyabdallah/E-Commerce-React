@@ -13,7 +13,7 @@ export default function Products() {
   if (error) return <p>{error.message}</p>
 
   return (
-    <Grid templateColumns={'repeat(auto-fill,minmax(300px, 1fr))'} gap={6} margin={30} >
+    <Grid templateColumns={'repeat(auto-fill,minmax(300px, 1fr))'} gap={6} margin={30} position={'relative'} top={'60px'} >
       {
         data.data.length ? data.data.map((productItem: IProduct) => <ProductCard key={productItem.id} product={productItem} />)
           : <h1>no products yet</h1>
