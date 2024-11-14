@@ -18,8 +18,8 @@ interface IErrors {
 }
 
 export default function Register() {
-  
-  
+
+
   const [showPassword, setShowPassword] = useState<boolean>(false)
   const [registerData, setRegisterData] = useState<IProps>({ username: "", email: "", password: "" })
   const [isUserName, setIsUserName] = useState<boolean>(false)
@@ -126,6 +126,12 @@ export default function Register() {
               </InputGroup>
               {isPassword ? <FormHelperText color={'red.500'}>password is required</FormHelperText> : null}
             </FormControl>
+
+            <FormControl>
+              <FormLabel>Profile Image</FormLabel>
+              <Input type="file" name="thumbnail" />
+            </FormControl>
+
             <Stack spacing={10} pt={2}>
               <Button
                 loadingText="Submitting"

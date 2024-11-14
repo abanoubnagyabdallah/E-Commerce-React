@@ -5,7 +5,26 @@ export interface IProduct {
     description: string;
     price: number;
     stock: number;
-    category: {  title: string;};
-    thumbnail: { url: string }
+    categories: {  title: string;}[];
+    thumbnail:{
+        formats:{
+            thumbnail:{url:string} 
+        }
+    }
     // quantity?:number
 }
+
+export interface IProductToEdit {
+    title: string;
+    description:string;
+    price: number;
+    stock: number;
+    thumbnail: string;
+}
+
+export interface IUserResponse {
+    id: number;
+    username: string;
+    email: string;
+    products: IProduct[];
+  }

@@ -15,7 +15,7 @@ import {
   HStack,
 } from '@chakra-ui/react'
 import { MoonIcon, SunIcon } from '@chakra-ui/icons'
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import cookieService from '../services/cookieService';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../app/store';
@@ -23,8 +23,11 @@ import CartDrawer from './CartDrawer';
 import { useRef } from 'react';
 import { onOpenCartDrawerAction } from '../app/features/globalSlice';
 
+
+
 const Links: { title: string; tab: string }[] = [
-  { title: 'Home', tab: "/" }, { title: 'About', tab: 'about' },
+  { title: 'Dashboard', tab: "/dashboard" },
+  // { title: 'About', tab: 'about' },
   { title: 'Products', tab: "products" },
 ]
 
@@ -38,15 +41,20 @@ export default function NavBar() {
 
   const token = cookieService.get('jwt')
   const { colorMode, toggleColorMode } = useColorMode()
+  const navigate = useNavigate()
 
   const logoutHandel = () => {
     cookieService.remove('jwt')
+    navigate('/login')
     window.location.reload()
   }
 
   const btnRef = useRef<HTMLButtonElement | null>(null)
   const dispatch = useDispatch()
   const handelOpenDrawer = () => dispatch(onOpenCartDrawerAction())
+
+  const {userImage}=useSelector((state:RootState)=>state.image)
+// console.log(userImage);
 
   return (
     <>
@@ -72,7 +80,7 @@ export default function NavBar() {
                 {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
               </Button>
 
-              <Button ref={btnRef}  onClick={handelOpenDrawer}>
+              <Button ref={btnRef} onClick={handelOpenDrawer}>
                 Cart ({cartProducts.length})
               </Button>
 
@@ -88,7 +96,8 @@ export default function NavBar() {
                       minW={0}>
                       <Avatar
                         size={'sm'}
-                        src={'https://avatars.dicebear.com/api/male/username.svg'}
+                        // src={'https://avatars.dicebear.com/api/male/username.svg'}
+                        src={`${import.meta.env.VITE_SERVER_URL}${userImage}`}
                       />
                     </MenuButton>
                     <MenuList alignItems={'center'}>
@@ -96,7 +105,8 @@ export default function NavBar() {
                       <Center>
                         <Avatar
                           size={'2xl'}
-                          src={'https://avatars.dicebear.com/api/male/username.svg'}
+                          // src={'https://avatars.dicebear.com/api/male/username.svg'}
+                          src={`${import.meta.env.VITE_SERVER_URL}${userImage}`}
                         />
                       </Center>
                       <br />

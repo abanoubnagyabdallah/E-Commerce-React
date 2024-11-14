@@ -31,5 +31,4 @@ const globalSlice = createSlice({
 })
 
 export const { isOpenCartDrawerAction, onCloseCartDrawerAction, onOpenCartDrawerAction } = globalSlice.actions
-// export const selectGlobal=(state:RootState)=>state
 export default globalSlice.reducer

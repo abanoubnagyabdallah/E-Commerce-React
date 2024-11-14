@@ -7,18 +7,25 @@ import globalSlice from './features/globalSlice'
 // ...
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
+import { apiSlice } from './services/apiSlice'
+import UserImageSlice from './features/userImageSlice'
 
 const persistCartConfig = {
   key: 'cart',
   storage,
 }
 
+const persistCartReducer = persistReducer(persistCartConfig, cartSlice)
+
 export const store = configureStore({
   reducer: {
-    cart: persistReducer(persistCartConfig, cartSlice),
+    image:UserImageSlice,
+    cart: persistCartReducer,
     // login: loginSlice
-    global: globalSlice
+    global: globalSlice,
+    [apiSlice.reducerPath]: apiSlice.reducer,
   },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false }).concat([apiSlice.middleware]),
 })
 
 export const persister = persistStore(store)

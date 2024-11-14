@@ -84,15 +84,14 @@ export default function Login() {
                 duration: 4000,
                 isClosable: true,
             })
-            // localStorage.setItem('LoggedInUser', JSON.stringify(response.data))
-            // console.log(response.data.jwt);
+            
             const date = new Date()
             const expiresAt = 1000 * 60 * 60 * 24 * 5
             date.setTime(date.getTime() + expiresAt)
             cookieService.set('jwt', response.data.jwt, { path: '/', expires: date })
 
             setTimeout(() => {
-                navigate('/')
+                navigate('/products')
             }, 1000);
 
         } catch (error) {

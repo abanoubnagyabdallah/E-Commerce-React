@@ -22,6 +22,8 @@ import {
   MenuItem,
   MenuList,
   Link,
+  Button,
+  useColorMode,
 } from '@chakra-ui/react'
 import {
   FiHome,
@@ -31,19 +33,20 @@ import {
 } from 'react-icons/fi'
 import { IconType } from 'react-icons'
 import { Outlet } from 'react-router-dom'
-import {Link as RouterLink} from 'react-router-dom'
+import { Link as RouterLink } from 'react-router-dom'
 import { HiOutlineViewColumns } from 'react-icons/hi2'
 import { BsGrid3X3 } from 'react-icons/bs'
+import { MoonIcon, SunIcon } from '@chakra-ui/icons'
 interface LinkItemProps {
   name: string
   icon: IconType
-  to:string
+  to: string
 }
 
 interface NavItemProps extends FlexProps {
   icon: IconType
   children: React.ReactNode
-  to:string
+  to: string
 }
 
 interface MobileProps extends FlexProps {
@@ -55,9 +58,9 @@ interface SidebarProps extends BoxProps {
 }
 
 const LinkItems: Array<LinkItemProps> = [
-  {to:"/dashboard", name: 'Home', icon: FiHome },
-  {to:"/dashboard/products", name: 'Products', icon: HiOutlineViewColumns },
-  {to:"/dashboard/category", name: 'Category', icon: BsGrid3X3 },
+  { to: "/dashboard", name: 'Home', icon: FiHome },
+  { to: "/dashboard/products", name: 'Products', icon: HiOutlineViewColumns },
+  { to: "/dashboard/category", name: 'Category', icon: BsGrid3X3 },
 ]
 
 const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
@@ -86,7 +89,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
   )
 }
 
-const NavItem = ({ icon, children,to, ...rest }: NavItemProps) => {
+const NavItem = ({ icon, children, to, ...rest }: NavItemProps) => {
   return (
     <Link
       as={RouterLink}
@@ -122,6 +125,7 @@ const NavItem = ({ icon, children,to, ...rest }: NavItemProps) => {
 }
 
 const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
+  const { colorMode, toggleColorMode } = useColorMode()
   return (
     <Flex
       ml={{ base: 0, md: 60 }}
@@ -148,6 +152,10 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
         fontWeight="bold">
         Logo
       </Text>
+
+      <Button onClick={toggleColorMode}>
+        {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+      </Button>
 
       <HStack spacing={{ base: '0', md: '6' }}>
         <IconButton size="lg" variant="ghost" aria-label="open menu" icon={<FiBell />} />
@@ -194,7 +202,6 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
 
 const SidebarWithHeader = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
-
   return (
     <Box minH="100vh" bg={useColorModeValue('gray.100', 'gray.900')}>
       <SidebarContent onClose={() => onClose} display={{ base: 'none', md: 'block' }} />
@@ -210,9 +217,9 @@ const SidebarWithHeader = () => {
         </DrawerContent>
       </Drawer>
       {/* mobilenav */}
-      <MobileNav onOpen={onOpen} />
+      <MobileNav onOpen={onOpen} />   
       <Box ml={{ base: 0, md: 60 }} p="4">
-        {<Outlet/>}
+        {<Outlet />}
       </Box>
     </Box>
   )

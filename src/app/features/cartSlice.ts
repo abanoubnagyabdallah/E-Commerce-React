@@ -31,6 +31,7 @@ const cartSlice = createSlice({
       const product = state.cartProducts.find((product) => product.id === action.payload);
       if (product) {
         product.quantity += 1
+        // product.price*=product.quantity
       }
     },
     // decrease product quantity
