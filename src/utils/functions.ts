@@ -29,11 +29,11 @@ export const AddItemToShoppingCart = (cartItem: ICartItem, shoppingCartItems: IC
     return [...shoppingCartItems, { ...cartItem, quantity: 1 }]
 }
 
-export const filterUniqueProductsByName = (products: IProduct[]) => {
-    const seenNames = new Set();
-    return products.filter((product) => {
-        const isDuplicate = seenNames.has(product.title);
-        seenNames.add(product.title);
-        return !isDuplicate;
-    });
-};
+// export const filterUniqueProductsByName = (products: IProduct[]) => {
+//     const seenNames = new Set();
+//     return products.filter((product) => {
+//         const isDuplicate = seenNames.has(product.title);
+//         seenNames.add(product.title);
+//         return !isDuplicate;
+//     });
+// };

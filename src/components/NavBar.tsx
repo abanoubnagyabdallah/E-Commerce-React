@@ -53,7 +53,7 @@ export default function NavBar() {
   const dispatch = useDispatch()
   const handelOpenDrawer = () => dispatch(onOpenCartDrawerAction())
 
-  const {userImage}=useSelector((state:RootState)=>state.image)
+  // const {userImage}=useSelector((state:RootState)=>state.image)
 // console.log(userImage);
 
   return (
@@ -97,7 +97,7 @@ export default function NavBar() {
                       <Avatar
                         size={'sm'}
                         // src={'https://avatars.dicebear.com/api/male/username.svg'}
-                        src={`${import.meta.env.VITE_SERVER_URL}${userImage}`}
+                        // src={`${import.meta.env.VITE_SERVER_URL}${userImage}`}
                       />
                     </MenuButton>
                     <MenuList alignItems={'center'}>
@@ -105,8 +105,8 @@ export default function NavBar() {
                       <Center>
                         <Avatar
                           size={'2xl'}
-                          // src={'https://avatars.dicebear.com/api/male/username.svg'}
-                          src={`${import.meta.env.VITE_SERVER_URL}${userImage}`}
+                          src={'https://avatars.dicebear.com/api/male/username.svg'}
+                          // src={`${import.meta.env.VITE_SERVER_URL}${userImage}`}
                         />
                       </Center>
                       <br />

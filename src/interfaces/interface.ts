@@ -5,18 +5,15 @@ export interface IProduct {
     description: string;
     price: number;
     stock: number;
-    categories: {  title: string;}[];
-    thumbnail:{
-        formats:{
-            thumbnail:{url:string} 
-        }
+    categories: { title: string; }[];
+    thumbnail: {
+        url: string
     }
-    // quantity?:number
 }
 
 export interface IProductToEdit {
     title: string;
-    description:string;
+    description: string;
     price: number;
     stock: number;
     thumbnail: string;
@@ -27,4 +24,4 @@ export interface IUserResponse {
     username: string;
     email: string;
     products: IProduct[];
-  }
+}

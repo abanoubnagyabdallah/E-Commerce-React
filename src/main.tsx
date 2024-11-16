@@ -8,15 +8,18 @@ import {
 } from '@tanstack/react-query'
 import { Provider } from 'react-redux'
 import { store } from './app/store.ts'
+import InternetConnectionProvider from './shared/InternetConnectionProvider.tsx'
 
 const queryClient = new QueryClient()
 
 createRoot(document.getElementById('root')!).render(
-  <QueryClientProvider client={queryClient}>
-    <ChakraProvider>
-    <Provider store={store}>
-      <App />
-    </Provider>
-    </ChakraProvider>
-  </QueryClientProvider>
+  <InternetConnectionProvider>
+    <QueryClientProvider client={queryClient}>
+      <ChakraProvider>
+        <Provider store={store}>
+          <App />
+        </Provider>
+      </ChakraProvider>
+    </QueryClientProvider>
+  </InternetConnectionProvider>
 )

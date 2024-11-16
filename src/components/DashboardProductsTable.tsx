@@ -114,7 +114,7 @@ export default function DashboardProductsTable() {
                                 <Td>{row.description}</Td>
                                 <Td>
                                     <Image
-                                        src={`${import.meta.env.VITE_SERVER_URL}${row.thumbnail.formats.thumbnail.url}`}
+                                        src={`${import.meta.env.VITE_SERVER_URL}${row.thumbnail.url}`}
                                         alt={row.title || "Product Image"}
                                         borderRadius="full"
                                         objectFit="cover"
@@ -140,7 +140,7 @@ export default function DashboardProductsTable() {
                                             description: row.description,
                                             price: row.price,
                                             stock: row.stock,
-                                            thumbnail: row.thumbnail.formats.thumbnail.url,
+                                            thumbnail: row.thumbnail.url,
                                         });
                                         onModalOpen();
                                         setupdateProductId(row.id);

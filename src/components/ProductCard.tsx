@@ -16,7 +16,7 @@ export default function ProductCard({ product }: IProps) {
         <Card bg={"none"} border={'1px solid #a8b5c8'} /* position={"relative"}*/ >
             <CardBody >
                 <Image
-                    src={`${import.meta.env.VITE_SERVER_URL}${product.thumbnail.formats.thumbnail.url}`}
+                    src={`${import.meta.env.VITE_SERVER_URL}${product.thumbnail.url}`}
                     alt='Green double couch with wooden legs'
                     borderRadius='50%'
                     width={200}
